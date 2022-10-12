@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('autor');
+            $table->string('editorial');
+            $table->string('ano_de_publicacion');
+            $table->string('mes_de_publicacion')->nullable();
+            $table->string('tipo_de_publicacion')->nullable();
+            $table->string('pais')->nullable();
+            $table->integer('paginas');
+            $table->text('descripcion')->nullable();
+            $table->decimal('precio');
+            $table->integer('stock')->default(0)->unsigned();
             $table->timestamps();
         });
     }
