@@ -14,7 +14,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = producto::all();
+        return view('libros.libroIndex', compact('productos'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('libros.libroCreate');
     }
 
     /**
@@ -35,7 +36,23 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'autor' => 'required|max:255',
+            'editorial' => 'required|max:255',
+            'ano_de_publicacion' => 'required|max:255',
+            'mes_de_publicacion' => 'max:255',
+            'tipo_de_publicacion' => 'max:255',
+            'pais' => 'max:255',
+            'paginas' => 'required|integer|numeric|min:0',
+            'descripcion' => 'max:65535',
+            'precio' => 'required|numeric|between:0,999999.99',
+            'stock' => 'required|integer|numeric|min:0',
+        ]);
+
+        producto::create($request->all());
+
+        return redirect('/libros');
     }
 
     /**
@@ -44,9 +61,21 @@ class ProductoController extends Controller
      * @param  \App\Models\producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(producto $producto)
+    // public function show(producto $producto) // NO JALA $PRODUCTO
+    // {
+    //     debug($producto);
+    //     return view('libros.libroShow', compact('producto'));
+    // }
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        //
+        return view('libros.libroShow', [
+            'producto' => producto::findorFail($id)
+        ]);
     }
 
     /**

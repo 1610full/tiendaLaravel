@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('mes_de_publicacion')->nullable();
             $table->string('tipo_de_publicacion')->nullable();
             $table->string('pais')->nullable();
-            $table->integer('paginas');
+            $table->integer('paginas')->unsigned();
             $table->text('descripcion')->nullable();
-            $table->decimal('precio');
+            $table->decimal('precio')->unsigned();
             $table->integer('stock')->default(0)->unsigned();
             $table->timestamps();
         });
