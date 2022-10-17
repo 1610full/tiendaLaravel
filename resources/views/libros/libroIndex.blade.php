@@ -21,6 +21,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Autor</th>
+            <th>Paginas</th>
             <th>Ver mas</th>
             <th>Editar</th>
             <th>Borrar</th>
@@ -30,6 +31,7 @@
             <td>{{ $producto->id }}</td>
             <td>{{ $producto->nombre }}</td>
             <td>{{ $producto->autor }}</td>
+            <td>{{ $producto->paginas }}</td>
             <td>
                 <a href="/libros/{{ $producto->id }}">
                     Detalles
@@ -40,7 +42,13 @@
                     Editar
                 </a>
             </td>
-            <td>Eliminar</td>
+            <td>
+                <form action="/libros/{{ $producto->id }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" value="Eliminar">
+                </form>
+            </td>
         </tr>
         @endforeach
     </table>
