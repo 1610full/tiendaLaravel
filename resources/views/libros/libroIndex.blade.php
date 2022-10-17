@@ -22,6 +22,7 @@
             <th>Nombre</th>
             <th>Autor</th>
             <th>Ver mas</th>
+            <th>Editar</th>
             <th>Borrar</th>
         </thead>
         @foreach ($productos as $producto)
@@ -32,6 +33,11 @@
             <td>
                 <a href="/libros/{{ $producto->id }}">
                     Detalles
+                </a>
+            </td>
+            <td>
+                <a href="/libros/{{ $producto->id }}/edit">
+                    Editar
                 </a>
             </td>
             <td>Eliminar</td>
