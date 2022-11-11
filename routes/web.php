@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AutorController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProveedorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,8 @@ Route::get('/', function () {
 });
 Route::resources([
     'libros' => ProductoController::class,
+    'autores' => AutorController::class,
+    'proveedores' => ProveedorController::class,
 ]);
 
 Route::middleware([
