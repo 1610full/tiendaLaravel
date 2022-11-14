@@ -5,7 +5,9 @@
 
         <h1>Crear Libro</h1>
 
-        <a class="waves-effect waves-light btn" href="/libros">Regresar</a>
+        <div class="section">
+            <a class="waves-effect waves-light btn" href="/libros">Regresar</a>
+        </div>
 
         <div class="row">
             <form class="col s12" action="/libros" method="POST">
