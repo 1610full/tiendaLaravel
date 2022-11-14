@@ -4,7 +4,7 @@
     </x-slot>
 
     <h1>Libros</h1>
-    <a href="/libros/create">Libro nuevo</a>
+    <a class="waves-effect waves-light btn" href="/libros/create">Libro nuevo</a>
     {{-- <ul>
         @foreach ($productos as $producto)
         <li>
@@ -29,12 +29,12 @@
             <td>{{ $producto->autor }}</td>
             <td>{{ $producto->paginas }}</td>
             <td>
-                <a href="/libros/{{ $producto->id }}">
+                <a class="waves-effect waves-light btn" href="/libros/{{ $producto->id }}">
                     Detalles
                 </a>
             </td>
             <td>
-                <a href="/libros/{{ $producto->id }}/edit">
+                <a class="waves-effect waves-light btn" href="/libros/{{ $producto->id }}/edit">
                     Editar
                 </a>
             </td>
@@ -42,7 +42,7 @@
                 <form action="/libros/{{ $producto->id }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <input type="submit" value="Eliminar">
+                    <input class="waves-effect waves-light btn" type="submit" value="Eliminar">
                 </form>
             </td>
         </tr>

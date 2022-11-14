@@ -5,7 +5,7 @@
 
         <h1>Editar Libro</h1>
 
-    <a href="/libros">Regresar</a>
+    <a class="waves-effect waves-light btn" href="/libros">Regresar</a>
 
     <div class="row">
     <form class="col s12" action="/libros/{{ $libro->id }}" method="POST">
@@ -116,7 +116,7 @@
             </div>
         </div>
 
-        <input type="submit" value="Guardar">
+        <input class="waves-effect waves-light btn" type="submit" value="Guardar">
     </form>
 </div>
 </x-layout-c-r-u-d>
