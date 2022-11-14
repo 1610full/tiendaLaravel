@@ -1,28 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mostrar libro</title>
-</head>
-<body>
-    <h1>Mostrar Libro</h1>
-    <a href="/libros">Regresar</a>
+<x-layout-c-r-u-d>
+    <x-slot:title>
+        Mostrar libro
+        </x-slot>
+
+        <h1>Mostrar Libro</h1>
+
+    <a class="waves-effect waves-light btn" href="/libros">Regresar</a>
+
     <div>
         {{-- {{ dd($producto) }} --}}
         {{debug($producto);}}
-        Nombre:{{ $producto->nombre }},
-        Autor:{{ $producto->autor }},
-        Editorial:{{ $producto->editorial }},
-        Año de publicacion:{{ $producto->ano_de_publicacion }},
-        Mes de publicacion:{{ $producto->mes_de_publicacion }},
-        Tipo de publicacion:{{ $producto->tipo_de_publicacion }},
-        Pais:{{ $producto->pais }},
-        Numero de Paginas:{{ $producto->paginas }},
-        Descripcion:{{ $producto->descripcion }},
-        Precio:{{ $producto->precio }},
-        Stock:{{ $producto->stock }}
+        <ul class="collection">
+            <li class="collection-item indigo lighten-3">Nombre: {{ $producto->nombre }}</li>
+            <li class="collection-item indigo lighten-3">Autor: {{ $producto->autor }}</li>
+            <li class="collection-item indigo lighten-3">Editorial: {{ $producto->editorial }}</li>
+            <li class="collection-item indigo lighten-3">Año de publicacion: {{ $producto->ano_de_publicacion }}</li>
+            <li class="collection-item indigo lighten-3">Mes de publicacion: {{ $producto->mes_de_publicacion }}</li>
+            <li class="collection-item indigo lighten-3">Tipo de publicacion: {{ $producto->tipo_de_publicacion }}</li>
+            <li class="collection-item indigo lighten-3">Pais: {{ $producto->pais }}</li>
+            <li class="collection-item indigo lighten-3">Numero de Paginas: {{ $producto->paginas }}</li>
+            <li class="collection-item indigo lighten-3">Descripcion: {{ $producto->descripcion }}</li>
+            <li class="collection-item indigo lighten-3">Precio: {{ $producto->precio }}</li>
+            <li class="collection-item indigo lighten-3">Stock: {{ $producto->stock }}</li>
+        </ul>
     </div>
-</body>
-</html>
+</x-layout-c-r-u-d>
