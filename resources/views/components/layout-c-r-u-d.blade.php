@@ -20,7 +20,7 @@
                     @auth
                     <form action="/logout" method="POST">
                         @csrf
-                        <input type="submit" value="Logout" class="waves-effect waves-teal btn-flat" style="color: white">
+                        <input type="submit" value="{{auth()->user()->name}} Logout" class="waves-effect waves-teal btn-flat" style="color: white">
                     </form>
                     @else
                     <a href="/login" class="waves-effect waves-teal btn-flat" style="color: white">Login</a>
