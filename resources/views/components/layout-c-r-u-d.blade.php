@@ -24,6 +24,7 @@
                     </form>
                     @else
                     <a href="/login" class="waves-effect waves-teal btn-flat" style="color: white">Login</a>
+                    <a href="/register" class="waves-effect waves-teal btn-flat" style="color: white">Register</a>
                     @endauth
                 </li>
             </ul>
