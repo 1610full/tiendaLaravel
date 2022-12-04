@@ -24,7 +24,8 @@ class AutorController extends Controller
      */
     public function index()
     {
-        //
+        $autores = Autor::all();
+        return view('autores.autorIndex', compact('autores'));
     }
 
     /**
@@ -34,7 +35,7 @@ class AutorController extends Controller
      */
     public function create()
     {
-        //
+        return view('autores.autorCreate');
     }
 
     /**
@@ -45,51 +46,69 @@ class AutorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'apellido' => 'required|max:255',
+        ]);
+
+        Autor::create($request->all());
+
+        return redirect('/autores');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
-    public function show(Autor $autor)
+    public function show($id)
     {
-        //
+        //return view('autores.autorShow', compact('autor'));
+        return view('autores.autorShow', ['autor' => Autor::findorFail($id)]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Autor $autor)
+    public function edit($id)
     {
-        //
+        return view('autores.autorEdit', ['autor' => Autor::findorFail($id)]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Autor $autor)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'apellido' => 'required|max:255',
+        ]);
+
+        $autor = Autor::findorFail($id);
+
+        $autor->nombre   = $request->nombre;
+        $autor->apellido = $request->apellido;
+
+        $autor->save();
+
+        return redirect('/autores');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Autor  $autor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Autor $autor)
+    public function destroy($id)
     {
-        //
+        $autor = Autor::findorFail($id);
+        $autor->delete();
+        return redirect('/autores');
     }
 }
