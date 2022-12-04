@@ -15,4 +15,20 @@ class Producto extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    /**
+     * Get the autor that owns the producto.
+     */
+    public function autor()
+    {
+        return $this->belongsTo(Autor::class);
+    }
+
+    /**
+     * The proveedors that sell this producto.
+     */
+    public function proveedors()
+    {
+        return $this->belongsToMany(Proveedor::class);
+    }
 }

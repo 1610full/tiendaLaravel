@@ -24,7 +24,9 @@
                     <tr>
                         <td>{{ $producto->id }}</td>
                         <td>{{ $producto->nombre }}</td>
-                        <td>{{ $producto->autor }}</td>
+                        <td>
+                            <a href="/autores/{{ $producto->autor->id }}">{{ $producto->autor->apellido }}, {{ $producto->autor->nombre }}</a>
+                        </td>
                         <td>{{ $producto->paginas }}</td>
                         <td>
                             <a class="waves-effect waves-light btn" href="/libros/{{ $producto->id }}">

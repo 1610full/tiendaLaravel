@@ -24,13 +24,34 @@
                         <label for="nombre">Nombre *</label>
                     </div>
 
-                    <div class="input-field col s4">
+                    {{-- <div class="input-field col s4">
                         @foreach ($errors->get('autor') as $message)
                             {{ $message }}
                         @endforeach
                         <input type="text" name="autor" id="autor" required
                             value="{{ old('autor') ?? $libro->autor }}">
                         <label for="autor">Autor *</label>
+                    </div> --}}
+                    <div class="input-field col s4">
+                        @foreach ($errors->get('autor_id') as $message)
+                            {{ $message }}
+                        @endforeach
+                        {{-- <input type="text" name="autor" id="autor" required value="{{ old('autor') }}">
+                        <label for="autor">Autor *</label> --}}
+
+                            <select name="autor_id" id="autor_id" class="browser-default" required>
+                              <option value="" disabled >Elige un autor</option>
+                              @foreach ($autores as $autor)
+                              {{ debug($autor->id, old('autor_id')) }}
+                                @if ($autor->id == old('autor_id') || $autor->id == $autor_actual->id)
+                                    <option value="{{ $autor->id }}" selected>{{ $autor->apellido }}, {{ $autor->nombre }}</option>
+                                @else
+                                    <option value="{{ $autor->id }}">{{ $autor->apellido }}, {{ $autor->nombre }}</option>
+                                @endif
+                              @endforeach
+                            </select>
+                            {{-- <label for="autor">Autor *</label> --}}
+
                     </div>
 
                     <div class="input-field col s4">

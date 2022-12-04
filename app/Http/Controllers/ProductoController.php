@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Autor;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('libros.libroCreate');
+        $autores = Autor::all();
+        return view('libros.libroCreate', compact('autores'));
     }
 
     /**
@@ -48,7 +50,7 @@ class ProductoController extends Controller
     {
         $request->validate([
             'nombre' => 'required|max:255',
-            'autor' => 'required|max:255',
+            'autor_id' => 'required|integer|numeric|min:0',
             'editorial' => 'required|max:255',
             'ano_de_publicacion' => 'required|max:255',
             'mes_de_publicacion' => 'max:255',
@@ -98,7 +100,9 @@ class ProductoController extends Controller
     // DE VARIABLE DE producto a libro
     public function edit(Producto $libro)
     {
-        return view('libros.libroEdit', compact('libro'));
+        $autores = Autor::all();
+        $autor_actual = $libro->autor;
+        return view('libros.libroEdit', compact('libro', 'autores', 'autor_actual'));
     }
 
     /**
@@ -112,7 +116,7 @@ class ProductoController extends Controller
     {
         $request->validate([
             'nombre' => 'required|max:255',
-            'autor' => 'required|max:255',
+            'autor_id' => 'required|integer|numeric|min:0',
             'editorial' => 'required|max:255',
             'ano_de_publicacion' => 'required|max:255',
             'mes_de_publicacion' => 'max:255',
@@ -125,7 +129,7 @@ class ProductoController extends Controller
         ]);
 
         $libro->nombre              = $request->nombre;
-        $libro->autor               = $request->autor;
+        $libro->autor_id            = $request->autor_id;
         $libro->editorial           = $request->editorial;
         $libro->ano_de_publicacion  = $request->ano_de_publicacion;
         $libro->mes_de_publicacion  = $request->mes_de_publicacion;

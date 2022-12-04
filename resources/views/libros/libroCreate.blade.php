@@ -24,11 +24,20 @@
                     </div>
 
                     <div class="input-field col s4">
-                        @foreach ($errors->get('autor') as $message)
+                        @foreach ($errors->get('autor_id') as $message)
                             {{ $message }}
                         @endforeach
-                        <input type="text" name="autor" id="autor" required value="{{ old('autor') }}">
-                        <label for="autor">Autor *</label>
+                        {{-- <input type="text" name="autor" id="autor" required value="{{ old('autor') }}">
+                        <label for="autor">Autor *</label> --}}
+
+                            <select name="autor_id" id="autor_id" class="browser-default" required>
+                              <option value="" disabled selected>Elige un autor</option>
+                              @foreach ($autores as $autor)
+                                <option value="{{ $autor->id }}">{{ $autor->apellido }}, {{ $autor->nombre }}</option>
+                              @endforeach
+                            </select>
+                            {{-- <label for="autor">Autor *</label> --}}
+
                     </div>
 
                     <div class="input-field col s4">

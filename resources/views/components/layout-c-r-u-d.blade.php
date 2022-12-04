@@ -9,6 +9,16 @@
     @vite(['resources/css/materialize.css'])
 </head>
 <body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo right">Logo</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="/libros">Libros</a></li>
+                <li><a href="/autores">Autores</a></li>
+                <li><a href="/proveedores">Proveedores</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         {{ $slot }}
     </div>
