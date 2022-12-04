@@ -143,6 +143,26 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="input-field col s6">
+                        @foreach ($errors->get('proveedor') as $message)
+                            {{ $message }}
+                        @endforeach
+                        <span>Proveedor(es) *</span>
+                        @foreach ($proveedores as $proveedor)
+                            <p>
+                                <label for="proveedor{{ $proveedor->id }}">
+                                    <input type="checkbox" class="filled-in"
+                                    name="proveedor[]"
+                                    {{ in_array($proveedor->id, array_column($libro->proveedors->toArray(), 'id'))  ? 'checked="checked"' : '' }}
+                                    id="proveedor{{ $proveedor->id }}" value="{{ $proveedor->id }}">
+                                    <span>{{ $proveedor->nombre }}</span>
+                                </label>
+                            </p>
+                        @endforeach
+                    </div>
+                </div>
+
                 <input class="waves-effect waves-light btn" type="submit" value="Guardar">
             </form>
         </div>
