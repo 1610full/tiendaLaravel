@@ -1,58 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index libros</title>
+<x-layout-c-r-u-d>
+    <x-slot:title>
+        Proveedores
+        </x-slot>
 
-    @vite(['resources/css/materialize.css', 'resources/js/materialize.js'])
-</head>
-<body>
-    <h1>Libros</h1>
-    <a href="/libros/create">Libro nuevo</a>
-    {{-- <ul>
-        @foreach ($productos as $producto)
-        <li>
-            {{ $producto->nombre }}
-        </li>
-        @endforeach
-    </ul> --}}
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Autor</th>
-            <th>Paginas</th>
-            <th>Ver mas</th>
-            <th>Editar</th>
-            <th>Borrar</th>
-        </thead>
-        @foreach ($productos as $producto)
-        <tr>
-            <td>{{ $producto->id }}</td>
-            <td>{{ $producto->nombre }}</td>
-            <td>{{ $producto->autor }}</td>
-            <td>{{ $producto->paginas }}</td>
-            <td>
-                <a href="/libros/{{ $producto->id }}">
-                    Detalles
-                </a>
-            </td>
-            <td>
-                <a href="/libros/{{ $producto->id }}/edit">
-                    Editar
-                </a>
-            </td>
-            <td>
-                <form action="/libros/{{ $producto->id }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" value="Eliminar">
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
-</body>
-</html>
+        <h1>Proveedores</h1>
+
+        <div class="section">
+            <a class="waves-effect waves-light btn" href="/proveedores/create">Proveedor nuevo</a>
+        </div>
+
+        <div class="section">
+            <table class="striped responsive-table">
+                <thead class="blue lighten-2">
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>Ver mas</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </thead>
+                @foreach ($proveedores as $proveedor)
+                    <tr>
+                        <td>{{ $proveedor->id }}</td>
+                        <td>{{ $proveedor->nombre }}</td>
+                        <td>{{ $proveedor->direccion }}</td>
+                        <td>{{ $proveedor->telefono }}</td>
+                        <td>
+                            <a class="waves-effect waves-light btn" href="/proveedores/{{ $proveedor->id }}">
+                                Detalles
+                            </a>
+                        </td>
+                        <td>
+                            <a class="waves-effect waves-light btn" href="/proveedores/{{ $proveedor->id }}/edit">
+                                Editar
+                            </a>
+                        </td>
+                        <td>
+                            <form action="/proveedores/{{ $proveedor->id }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input class="waves-effect waves-light btn" type="submit" value="Eliminar">
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+</x-layout-c-r-u-d>

@@ -73,24 +73,40 @@ class ProveedorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proveedor $proveedor)
+    public function edit($id)
     {
-        //
+        return view('proveedores.proveedorEdit', ['proveedor' => Proveedor::findorFail($id)]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proveedor $proveedor)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'direccion' => 'required|max:65535',
+            'telefono' => 'required|max:20',
+            'email' => 'required|max:255',
+            'descripcion' => 'max:65535',
+        ]);
+
+        $proveedor = Proveedor::findorFail($id);
+
+        $proveedor->nombre      = $request->nombre;
+        $proveedor->direccion   = $request->direccion;
+        $proveedor->telefono    = $request->telefono;
+        $proveedor->email       = $request->email;
+        $proveedor->descripcion = $request->descripcion;
+
+        $proveedor->save();
+
+        return redirect('/proveedores');
     }
 
     /**
