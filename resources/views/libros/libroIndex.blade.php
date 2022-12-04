@@ -25,7 +25,7 @@
                         <td>{{ $producto->id }}</td>
                         <td>{{ $producto->nombre }}</td>
                         <td>
-                            <a href="/autores/{{ $producto->autor->id }}">{{ $producto->autor->apellido }}, {{ $producto->autor->nombre }}</a>
+                            <a href="/autores/{{ $producto->autor->id }}">{{ $producto->autor->fullName }}</a>
                         </td>
                         <td>{{ $producto->paginas }}</td>
                         <td>

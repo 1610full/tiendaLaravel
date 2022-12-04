@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,5 +23,21 @@ class Autor extends Model
     public function libros()
     {
         return $this->hasMany(Producto::class);
+    }
+
+    /**
+     * Interact with the user's full name.
+     *
+     * @return  \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            // get: fn ($value, $attributes) => new FullName(
+            //     $attributes['apellido'],
+            //     $attributes['nombre'],
+            // ),
+            get: fn ($value, $attributes) => $attributes['apellido'].', '.$attributes['nombre'],
+        );
     }
 }
