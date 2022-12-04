@@ -26,6 +26,9 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->decimal('precio')->unsigned();
             $table->integer('stock')->default(0)->unsigned();
+
+            $table->string('ruta_imagen')->nullable();
+
             $table->timestamps();
 
             $table->foreignId('autor_id')->constrained();

@@ -23,6 +23,11 @@
             @foreach ($proveedor->productos as $libro)
                 <div class="col s6 m4">
                     <div class="card blue-grey darken-1">
+                        <div class="card-image">
+                            @if (!is_null($libro->ruta_imagen))
+                                <img src="{{ '/'.$libro->ruta_imagen }}" alt="imagen">
+                            @endif
+                        </div>
                         <div class="card-content white-text">
                             <span class="card-title">Nombre: {{$libro->nombre}}</span>
                             <span class="card-title">Autor: {{$libro->autor->apellido}}, {{$libro->autor->nombre}}</span>

@@ -6,6 +6,7 @@ use App\Models\Autor;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -66,6 +67,12 @@ class ProductoController extends Controller
             'precio' => 'required|numeric|between:0,999999.99',
             'stock' => 'required|integer|numeric|min:0',
         ]);
+
+        if ($request->file('imagen')->isValid()) {
+            $path = $request->file('imagen')->store('imagenes');
+
+            $request->merge(['ruta_imagen' => $path]);
+        }
 
         $producto = Producto::create($request->all());
 
@@ -137,6 +144,16 @@ class ProductoController extends Controller
             'precio' => 'required|numeric|between:0,999999.99',
             'stock' => 'required|integer|numeric|min:0',
         ]);
+
+        if (!$request->hasFile('imagen')) {
+            // no se hace nada
+        } else if ($request->file('imagen')->isValid()) {
+            $path = $request->file('imagen')->store('imagenes');
+
+            $request->merge(['ruta_imagen' => $path]);
+
+            $libro->ruta_imagen = $request->ruta_imagen;
+        }
 
         $libro->nombre              = $request->nombre;
         $libro->autor_id            = $request->autor_id;

@@ -10,6 +10,9 @@
         <div>
             {{-- {{ dd($producto) }} --}}
             {{ debug($producto) }}
+            <div class="section">
+                <img src="{{ '/'.$producto->ruta_imagen }}" alt="imagen" width="400">
+            </div>
             <ul class="collection">
                 <li class="collection-item indigo lighten-3">Nombre: {{ $producto->nombre }}</li>
                 <li class="collection-item indigo lighten-3">Autor: <a href="/autores/{{ $producto->autor->id }}">{{ $producto->autor->apellido }}, {{ $producto->autor->nombre }}</a></li>

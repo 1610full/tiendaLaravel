@@ -10,7 +10,7 @@
         </div>
 
         <div class="row">
-            <form class="col s12" action="/libros" method="POST">
+            <form class="col s12" action="/libros" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
@@ -141,6 +141,13 @@
                                 </label>
                             </p>
                         @endforeach
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s4">
+                        <section>Imagen:</section>
+                        <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg">
                     </div>
                 </div>
 

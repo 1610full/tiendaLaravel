@@ -12,7 +12,7 @@
             <h2>{{ $autor->apellido }}, {{ $autor->nombre }}</h2>
             <div class="collection">
                 @foreach ($autor->libros as $libro)
-                    <a class="collection-item" href="/libros/{{ $libro->id }}">Libro: {{ $libro->nombre }}</a>
+                    <a class="collection-item" href="/libros/{{ $libro->id }}">Libro: {{ $libro->nombre }}, Tipo: {{ $libro->tipo_de_publicacion }}</a>
                 @endforeach
             </div>
         </div>

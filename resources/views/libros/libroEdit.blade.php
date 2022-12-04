@@ -10,7 +10,7 @@
         </div>
 
         <div class="row">
-            <form class="col s12" action="/libros/{{ $libro->id }}" method="POST">
+            <form class="col s12" action="/libros/{{ $libro->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="row">
@@ -160,6 +160,22 @@
                                 </label>
                             </p>
                         @endforeach
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s4">
+                        @if (is_null($libro->ruta_imagen))
+                            <section>Imagen:</section>
+                            <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg">
+                        @else
+                            <section>Imagen actual:</section>
+                            <div class="section">
+                                <img src="{{ '/'.$libro->ruta_imagen }}" alt="imagen" width="300">
+                            </div>
+                            <section>Cambiar imagen:</section>
+                            <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg">
+                        @endif
                     </div>
                 </div>
 
