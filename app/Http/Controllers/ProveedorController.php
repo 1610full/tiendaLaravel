@@ -35,7 +35,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('proveedores.proveedorCreate');
     }
 
     /**
@@ -46,18 +46,28 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'direccion' => 'required|max:65535',
+            'telefono' => 'required|max:20',
+            'email' => 'required|max:255',
+            'descripcion' => 'max:65535',
+        ]);
+
+        Proveedor::create($request->all());
+
+        return redirect('/proveedores');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Proveedor $proveedor)
+    public function show($id)
     {
-        //
+        $proveedor = Proveedor::with('productos.autor')->findorFail($id);
+        return view('proveedores.proveedorShow', compact('proveedor'));
     }
 
     /**
@@ -86,11 +96,12 @@ class ProveedorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proveedor $proveedor)
+    public function destroy($id)
     {
-        //
+        $proveedor = Proveedor::findorFail($id);
+        $proveedor->delete();
+        return redirect('/proveedores');
     }
 }

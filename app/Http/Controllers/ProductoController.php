@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Autor;
 use App\Models\Producto;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -25,7 +26,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
+        // $productos = Producto::all();
+        $productos = Producto::with('autor')->get();
         return view('libros.libroIndex', compact('productos'));
     }
 
@@ -37,7 +39,8 @@ class ProductoController extends Controller
     public function create()
     {
         $autores = Autor::all();
-        return view('libros.libroCreate', compact('autores'));
+        $proveedores = Proveedor::all();
+        return view('libros.libroCreate', compact('autores', 'proveedores'));
     }
 
     /**
@@ -48,6 +51,8 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->proveedor);
+
         $request->validate([
             'nombre' => 'required|max:255',
             'autor_id' => 'required|integer|numeric|min:0',
@@ -62,7 +67,9 @@ class ProductoController extends Controller
             'stock' => 'required|integer|numeric|min:0',
         ]);
 
-        Producto::create($request->all());
+        $producto = Producto::create($request->all());
+
+        $producto->proveedors()->attach($request->proveedor);
 
         return redirect('/libros');
     }
@@ -85,9 +92,11 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        return view('libros.libroShow', [
-            'producto' => Producto::findorFail($id)
-        ]);
+        $producto = Producto::findorFail($id);
+
+        $proveedores = $producto->proveedors;
+
+        return view('libros.libroShow', compact('producto', 'proveedores'));
     }
 
     /**

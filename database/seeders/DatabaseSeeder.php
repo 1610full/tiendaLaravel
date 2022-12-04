@@ -25,14 +25,23 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $this->call([
-        //     AutorSeeder::class,
-        //     ProveedorSeeder::class,
-        // ]);
+        $this->call([
+            AutorSeeder::class,
+            ProveedorSeeder::class,
+        ]);
 
-        Producto::factory()
-                ->for(Autor::factory())
-                ->has(Proveedor::factory()->count(3))
-                ->create();
+        // Producto::factory()
+        //         ->for(Autor::factory())
+        //         ->has(Proveedor::factory()->count(2))
+        //         ->count(3)
+        //         ->create();
+
+        Proveedor::factory()
+            ->has(Producto::factory()->for(Autor::factory())->count(11))
+            ->create();
+
+        Proveedor::factory()
+            ->has(Producto::factory()->for(Autor::factory())->count(12))
+            ->create();
     }
 }
