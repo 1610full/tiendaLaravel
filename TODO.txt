@@ -1,3 +1,7 @@
 TODO
 
-
+COMANDOS IMPORTANTES:
+php artisan storage:link // para settear los links configurados en filesystems.php cosas de imagenes etc
+php artisan migrate:fresh
+php artisan db:seed
+php artisan route:list
