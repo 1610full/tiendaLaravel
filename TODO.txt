@@ -1,0 +1,5 @@
+TODO
+
+seeders y factories
+crud proveedores y crud autores
+modificar proveedor index
