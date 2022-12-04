@@ -16,6 +16,16 @@
                 <li><a href="/libros">Libros</a></li>
                 <li><a href="/autores">Autores</a></li>
                 <li><a href="/proveedores">Proveedores</a></li>
+                <li>
+                    @auth
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <input type="submit" value="Logout" class="waves-effect waves-teal btn-flat" style="color: white">
+                    </form>
+                    @else
+                    <a href="/login" class="waves-effect waves-teal btn-flat" style="color: white">Login</a>
+                    @endauth
+                </li>
             </ul>
         </div>
     </nav>
