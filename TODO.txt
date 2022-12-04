@@ -1,5 +1,11 @@
 TODO
 
+modals Mostrar mensajes de éxito al crear, editar o eliminar registros.
+Correos
+
+cambiar a bootstrap?
+talvez generar pdf
+
 COMANDOS IMPORTANTES:
 php artisan storage:link // para settear los links configurados en filesystems.php cosas de imagenes etc
 php artisan migrate:fresh
