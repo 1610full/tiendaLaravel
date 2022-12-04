@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::resources([
     'libros' => ProductoController::class,
     'autores' => AutorController::class,
