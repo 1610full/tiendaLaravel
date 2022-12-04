@@ -3,6 +3,7 @@
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,17 @@ Route::resources([
     'autores' => AutorController::class,
     'proveedores' => ProveedorController::class,
 ]);
+
+// Email
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/libros');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::middleware([
     'auth:sanctum',
