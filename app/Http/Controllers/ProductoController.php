@@ -111,7 +111,8 @@ class ProductoController extends Controller
     {
         $autores = Autor::all();
         $autor_actual = $libro->autor;
-        return view('libros.libroEdit', compact('libro', 'autores', 'autor_actual'));
+        $proveedores = Proveedor::all();
+        return view('libros.libroEdit', compact('libro', 'autores', 'autor_actual', 'proveedores'));
     }
 
     /**
@@ -150,6 +151,9 @@ class ProductoController extends Controller
         $libro->stock               = $request->stock;
 
         $libro->save();
+
+        $libro->proveedors()->detach();
+        $libro->proveedors()->attach($request->proveedor);
 
         return redirect('/libros');
     }

@@ -1,4 +1,3 @@
 TODO
 
-crud proveedores
-modificar proveedor index
+
