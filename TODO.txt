@@ -1,7 +1,6 @@
 TODO
 
 modals Mostrar mensajes de éxito al crear, editar o eliminar registros.
-Correos
 
 cambiar a bootstrap?
 talvez generar pdf

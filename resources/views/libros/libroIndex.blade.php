@@ -5,12 +5,9 @@
 
         <h1>Libros</h1>
 
-        <div class="section">
-            <a class="waves-effect waves-light btn" href="/libros/create">Libro nuevo</a>
-        </div>
+            <a class="btn btn-outline-primary" href="/libros/create">Libro nuevo</a>
 
-        <div class="section">
-            <table class="striped responsive-table">
+            <table class="table table-striped table-hover align-middle">
                 <thead class="blue lighten-2">
                     <th>ID</th>
                     <th>Nombre</th>
@@ -20,6 +17,7 @@
                     <th>Editar</th>
                     <th>Borrar</th>
                 </thead>
+                <tbody class="table-group-divider">
                 @foreach ($productos as $producto)
                     <tr>
                         <td>{{ $producto->id }}</td>
@@ -29,12 +27,12 @@
                         </td>
                         <td>{{ $producto->paginas }}</td>
                         <td>
-                            <a class="waves-effect waves-light btn" href="/libros/{{ $producto->id }}">
+                            <a class="btn btn-outline-info" href="/libros/{{ $producto->id }}">
                                 Detalles
                             </a>
                         </td>
                         <td>
-                            <a class="waves-effect waves-light btn" href="/libros/{{ $producto->id }}/edit">
+                            <a class="btn btn-outline-primary" href="/libros/{{ $producto->id }}/edit">
                                 Editar
                             </a>
                         </td>
@@ -42,11 +40,11 @@
                             <form action="/libros/{{ $producto->id }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input class="waves-effect waves-light btn" type="submit" value="Eliminar">
+                                <input class="btn btn-outline-danger" type="submit" value="Eliminar">
                             </form>
                         </td>
                     </tr>
                 @endforeach
+                </tbody>
             </table>
-        </div>
 </x-layout-c-r-u-d>
